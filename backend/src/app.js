@@ -6,7 +6,13 @@ import { errorHandler, notFound } from "./middlewares/errorMiddleware.js";
 
 export const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+  })
+);
 app.use(morgan("dev"));
 app.use(express.json());
 
