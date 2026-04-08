@@ -5,6 +5,7 @@ import routes from "./routes/index.js";
 import { errorHandler, notFound } from "./middlewares/errorMiddleware.js";
 
 export const app = express();
+const apiBasePath = process.env.VERCEL ? "/" : "/api";
 
 app.use(
   cors({
@@ -16,7 +17,7 @@ app.use(
 app.use(morgan("dev"));
 app.use(express.json());
 
-app.use("/api", routes);
+app.use(apiBasePath, routes);
 
 app.use(notFound);
 app.use(errorHandler);
